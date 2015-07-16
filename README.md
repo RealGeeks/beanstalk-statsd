@@ -12,6 +12,10 @@ Send [beanstalk](http://kr.github.io/beanstalkd/) stats to [StatsD](https://gith
     -v=1: Output verbosity level. Use 0 (quiet), 1 or 2
     -version=false: Show version and exit
 
+## Install
+
+Just download [one of our binaries](dist)
+
 ## Development
 
 First update the `Version` constant then build the binaries with
