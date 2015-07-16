@@ -56,6 +56,7 @@ func main() {
 		stats, err := TubesStats()
 		if err != nil {
 			log.Print("ERROR (retry): ", err)
+			continue
 		}
 		SendStats(stats)
 		time.Sleep(config.Period)
