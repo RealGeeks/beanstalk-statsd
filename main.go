@@ -1,3 +1,4 @@
+// Command to collect stats from banstalkd tubes and send to statsd
 package main
 
 import (
@@ -5,6 +6,8 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
+	"runtime"
 	"strconv"
 	"strings"
 	"time"
@@ -22,9 +25,14 @@ var config struct {
 	Tubes          map[string]bool
 }
 
+const Version = "1.0"
+
 func main() {
 
 	var tubes string
+	var showver bool
+
+	flag.BoolVar(&showver, "version", false, "Show version and exit")
 	flag.StringVar(&config.BeanstalkdAddr, "beanstalkd", "127.0.0.1:11300", "Beanstalkd address")
 	flag.StringVar(&config.StatsdAddr, "statsd", "127.0.0.1:8125", "StatsD server address")
 	flag.StringVar(&config.StatsdPrefix, "prefix", "beanstalk", "StatsD prefix for all stats")
@@ -32,6 +40,11 @@ func main() {
 	flag.DurationVar(&config.Period, "period", time.Second, "How often to send stats. Ex.: 1s (second), 2m (minutes), 400ms (milliseconds)")
 	flag.StringVar(&tubes, "tubes", "*", "Comma separated list of tubes to watch. Use * to watch all")
 	flag.Parse()
+
+	if showver {
+		fmt.Fprintf(os.Stderr, "%s %s (%s)\n", os.Args[0], Version, runtime.Version())
+		return
+	}
 
 	var err error
 	config.Tubes, err = parseTubesWatch(tubes)
