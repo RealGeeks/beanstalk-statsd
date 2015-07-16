@@ -10,10 +10,15 @@ Send [beanstalk](http://kr.github.io/beanstalkd/) stats to [StatsD](https://gith
     -statsd="127.0.0.1:8125": StatsD server address
     -tubes="*": Comma separated list of tubes to watch. Use * to watch all
     -v=1: Output verbosity level. Use 0 (quiet), 1 or 2
+    -version=false: Show version and exit
+
+## Install
+
+Just download [one of our binaries](dist)
 
 ## Development
 
-First update the `Version` contant then build the binaries with
+First update the `Version` constant then build the binaries with
 [goxc](https://github.com/laher/goxc#installation)
 
     make
