@@ -16,6 +16,10 @@ Send [beanstalk](http://kr.github.io/beanstalkd/) stats to [StatsD](https://gith
 
 Just download [one of our binaries](dist)
 
+## Running in docker
+
+```docker run -e BEANSTALK_HOST=foo BEANSTALK_PORT=1234 STATSD_HOST=whatever realgeeks/beanstalk-statsd```
+
 ## Development
 
 First update the `Version` constant then build the binaries with
